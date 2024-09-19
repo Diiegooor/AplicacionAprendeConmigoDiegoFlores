@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Por favor ingrese usuario y contraseña", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(MainActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, menuPrincipal.class);
+                    Intent intent = new Intent(MainActivity.this, menuPrincipal1.class);
                     startActivity(intent);
                 }
             }
