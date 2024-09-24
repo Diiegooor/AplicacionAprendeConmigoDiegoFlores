@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".unobasico">
+    tools:context=".dosbasico">
+
 
     <ImageButton
         android:id="@+id/btnBack"
@@ -22,17 +23,17 @@
 
     <TextView
         android:id="@+id/title_materias"
-        android:layout_width="214dp"
-        android:layout_height="91dp"
-        android:layout_marginEnd="96dp"
+        android:layout_width="189dp"
+        android:layout_height="88dp"
+        android:layout_marginEnd="108dp"
         android:padding="16dp"
-        android:text="Materias 1° Basico"
+        android:text="Materias 2° Basico"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="3dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <ScrollView
         android:layout_width="0dp"
@@ -81,14 +82,14 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Aprender las vocales"
+                            android:text="Palabras con hiatos y diptongos"
                             android:textSize="16sp" />
 
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_marginStart="8dp"
-                            android:src="@drawable/vocalesprimero" />
+                            android:src="@drawable/hiatodiptongosegundo" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -101,14 +102,14 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Aprender el abecedario"
+                            android:text="Opinan sobre algún aspecto de la lectura."
                             android:textSize="16sp" />
 
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_marginStart="8dp"
-                            android:src="@drawable/abecedarioprimero" />
+                            android:src="@drawable/lecturasegundo" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -173,14 +174,14 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Numeros del 1 Al 10"
+                            android:text="• Escriben un número dado en cifras o en palabras."
                             android:textSize="16sp" />
 
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_marginStart="8dp"
-                            android:src="@drawable/unoadiesprimero" />
+                            android:src="@drawable/numerossegundo" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -193,14 +194,14 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Aprender a sumar"
+                            android:text="Comparan números hasta 100"
                             android:textSize="16sp" />
 
                         <ImageView
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_marginStart="8dp"
-                            android:src="@drawable/sumarprimero" />
+                            android:src="@drawable/ceroaciensegundo" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -232,98 +233,6 @@
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:elevation="4dp"
-                app:cardCornerRadius="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="8dp"
-                        android:text="Ciencias Naturales"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Cuales son los seres vivos"
-                            android:textSize="16sp" />
-
-                        <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:layout_marginStart="8dp"
-                            android:src="@drawable/seresvivosprimero" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Estapas de los seres vivos "
-                            android:textSize="16sp" />
-
-                        <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:layout_marginStart="8dp"
-                            android:src="@drawable/ciclovidaprimero" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:paddingTop="16dp">
-
-                        <Button
-                            android:id="@+id/btn_agregarCien"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Agregar" />
-
-                        <Button
-                            android:id="@+id/btn_eliminarCien"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="Eliminar" />
-
-                        <Button
-                            android:id="@+id/btn_modificarCien"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="Modificar" />
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

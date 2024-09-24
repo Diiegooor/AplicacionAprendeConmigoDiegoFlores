@@ -42,4 +42,12 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="agregar">Agregar</string>
+    <string-array name="opinion_categories">
+        <item>Interfaz</item>
+        <item>Funcionalidad</item>
+        <item>Diseño</item>
+        <item>Rendimiento</item>
+        <item>Usabilidad</item>
+    </string-array>
 </resources>

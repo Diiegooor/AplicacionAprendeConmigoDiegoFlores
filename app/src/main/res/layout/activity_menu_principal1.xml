@@ -8,28 +8,32 @@
     android:background="@drawable/cut_card_background"
     tools:context=".menuPrincipal1">
 
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_marginEnd="104dp"
         android:text="Menu Principal"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="16dp" />
 
     <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/gridLayout"
+        android:layout_width="397dp"
+        android:layout_height="560dp"
         android:layout_below="@id/textView"
-        android:layout_margin="30dp"
+        android:layout_marginTop="52dp"
         android:columnCount="2"
         android:rowCount="4"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/textView">
 
 
         <androidx.cardview.widget.CardView
@@ -40,6 +44,7 @@
             android:layout_columnWeight="1"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
+            android:onClick="abrirActividadPrimero"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
             app:cardUseCompatPadding="true">
@@ -190,5 +195,18 @@
 
 
     </GridLayout>
+
+    <Button
+        android:id="@+id/btnOpinion"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="92dp"
+        android:layout_marginBottom="52dp"
+        android:text="Danos tu opinion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
