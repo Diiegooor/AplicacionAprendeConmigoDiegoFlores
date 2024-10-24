@@ -118,28 +118,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:gravity="center"
-                        android:paddingTop="16dp">
-
-                        <Button
-                            android:id="@+id/btn_agregarLeng"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="agregar"/>
-
-                        <Button
-                            android:id="@+id/btn_eliminarLeng"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Eliminar"
-                            android:layout_marginStart="16dp"/>
-
-                        <Button
-                            android:id="@+id/btn_modificarLeng"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Modificar"
-                            android:layout_marginStart="16dp"/>
-                    </LinearLayout>
+                        android:paddingTop="16dp"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

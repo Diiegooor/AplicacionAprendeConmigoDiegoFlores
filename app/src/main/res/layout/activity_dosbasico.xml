@@ -117,28 +117,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="horizontal"
-                        android:paddingTop="16dp">
-
-                        <Button
-                            android:id="@+id/btn_agregarLeng"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="agregar" />
-
-                        <Button
-                            android:id="@+id/btn_eliminarLeng"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="Eliminar" />
-
-                        <Button
-                            android:id="@+id/btn_modificarLeng"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="Modificar" />
-                    </LinearLayout>
+                        android:paddingTop="16dp"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -209,28 +188,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="horizontal"
-                        android:paddingTop="16dp">
-
-                        <Button
-                            android:id="@+id/btn_agregarMat"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Agregar" />
-
-                        <Button
-                            android:id="@+id/btn_eliminarMat"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="Eliminar" />
-
-                        <Button
-                            android:id="@+id/btn_modificarMat"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="Modificar" />
-                    </LinearLayout>
+                        android:paddingTop="16dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>

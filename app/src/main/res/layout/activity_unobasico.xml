@@ -78,6 +78,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/aprendeVocales"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -98,6 +99,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/aprenderAbc"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -116,28 +118,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="horizontal"
-                        android:paddingTop="16dp">
-
-                        <Button
-                            android:id="@+id/btn_agregarLeng"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="agregar" />
-
-                        <Button
-                            android:id="@+id/btn_eliminarLeng"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="Eliminar" />
-
-                        <Button
-                            android:id="@+id/btn_modificarLeng"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="Modificar" />
-                    </LinearLayout>
+                        android:paddingTop="16dp"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -170,6 +151,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/aprenderNum"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -190,6 +172,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/aprenderSumar"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -208,28 +191,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="horizontal"
-                        android:paddingTop="16dp">
-
-                        <Button
-                            android:id="@+id/btn_agregarMat"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Agregar" />
-
-                        <Button
-                            android:id="@+id/btn_eliminarMat"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="Eliminar" />
-
-                        <Button
-                            android:id="@+id/btn_modificarMat"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="Modificar" />
-                    </LinearLayout>
+                        android:paddingTop="16dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -261,6 +223,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/aprenderSeresVivos"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -281,6 +244,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/aprenderEtapasSeresVivos"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -299,28 +263,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="horizontal"
-                        android:paddingTop="16dp">
-
-                        <Button
-                            android:id="@+id/btn_agregarCien"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Agregar" />
-
-                        <Button
-                            android:id="@+id/btn_eliminarCien"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="Eliminar" />
-
-                        <Button
-                            android:id="@+id/btn_modificarCien"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="Modificar" />
-                    </LinearLayout>
+                        android:paddingTop="16dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>

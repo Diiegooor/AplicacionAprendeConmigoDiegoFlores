@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -33,6 +35,60 @@ public class unobasico extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        TextView myTextView = findViewById(R.id.aprendeVocales);
+        myTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(unobasico.this, vocales.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView myTextView2 = findViewById(R.id.aprenderAbc);
+        myTextView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(unobasico.this, vocales.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView myTextView3 = findViewById(R.id.aprenderNum);
+        myTextView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(unobasico.this, vocales.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView myTextView4 = findViewById(R.id.aprenderSumar);
+        myTextView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(unobasico.this, vocales.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView myTextView5 = findViewById(R.id.aprenderSeresVivos);
+        myTextView5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(unobasico.this, vocales.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView myTextView6 = findViewById(R.id.aprenderEtapasSeresVivos);
+        myTextView6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(unobasico.this, vocales.class);
+                startActivity(intent);
             }
         });
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AprendeConmigo1"
         tools:targetApi="31">
+        <activity
+            android:name=".EtapasSeresVivos"
+            android:exported="false" />
+        <activity
+            android:name=".SeresVivos"
+            android:exported="false" />
+        <activity
+            android:name=".Sumar"
+            android:exported="false" />
+        <activity
+            android:name=".numeros1a10"
+            android:exported="false" />
+        <activity
+            android:name=".abecedario"
+            android:exported="false" />
+        <activity
+            android:name=".vocales"
+            android:exported="true" />
         <activity
             android:name=".opinion1"
             android:exported="true" />
