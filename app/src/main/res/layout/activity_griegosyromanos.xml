@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".griegosyromanos"
     android:orientation="vertical"
+    android:background="@drawable/cut_card_background"
     android:padding="16dp">
 
     <ImageButton

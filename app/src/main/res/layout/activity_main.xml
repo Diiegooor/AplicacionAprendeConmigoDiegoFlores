@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/cut_card_background"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -35,7 +36,7 @@
             android:paddingBottom="20dp"/>
 
         <EditText
-            android:id="@+id/et_username"
+            android:id="@+id/et_nombre"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:hint="Usuario"
@@ -43,7 +44,7 @@
             android:paddingBottom="10dp" />
 
         <EditText
-            android:id="@+id/et_password"
+            android:id="@+id/et_contrasena"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:hint="Contraseña"
@@ -51,7 +52,7 @@
             android:paddingBottom="10dp" />
 
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_iniciar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Iniciar Sesión"
@@ -62,7 +63,7 @@
             android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Crear Nueva Cuenta"
+            android:text="Crear Nuevo Usuario"
             android:padding="10dp"
             android:layout_marginTop="10dp"/>
     </LinearLayout>
