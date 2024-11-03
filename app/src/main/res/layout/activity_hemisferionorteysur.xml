@@ -5,7 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SeresVivos">
+    tools:context=".hemisferionorteysur"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <ImageButton
         android:id="@+id/btnBack"
@@ -24,14 +26,24 @@
         android:id="@+id/tv_titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Seres Vivos"
+        android:text="Hemisferios"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center" />
+
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_titulo" />
 
     <TextView
         android:id="@+id/tv_descripcion"
@@ -39,22 +51,31 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="Aprenderemos cuales son los seres vivos"
+        android:text="¿En qué hemisferio se encuentra este lugar?"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_titulo" />
+        app:layout_constraintTop_toBottomOf="@id/webview" />
 
-    <WebView
-        android:id="@+id/webview"
+    <Button
+        android:id="@+id/btnHemisferioNorte"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:text="Hemisferio Norte"
+        app:layout_constraintTop_toBottomOf="@id/tv_descripcion"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_descripcion" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
+    <Button
+        android:id="@+id/btnHemisferioSur"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Hemisferio Sur"
+        app:layout_constraintTop_toBottomOf="@id/btnHemisferioNorte"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

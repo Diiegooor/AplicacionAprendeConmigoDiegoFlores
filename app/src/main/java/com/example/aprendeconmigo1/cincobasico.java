@@ -1,8 +1,10 @@
 package com.example.aprendeconmigo1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +31,24 @@ public class cincobasico extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        TextView myTextView = findViewById(R.id.aprendeDecrecyCrecien);
+        myTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(cincobasico.this, decrecienteycreciente.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView myTextView2 = findViewById(R.id.aprendeExpresion);
+        myTextView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(cincobasico.this, expresionmatematica.class);
+                startActivity(intent);
             }
         });
     }

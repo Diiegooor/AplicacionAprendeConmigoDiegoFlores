@@ -9,7 +9,19 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Título -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="start"
+        android:layout_margin="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Botón de volver"
+        android:scaleType="centerInside"
+        android:src="@drawable/atras2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tv_titulo"
         android:layout_width="wrap_content"
@@ -23,7 +35,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center" />
 
-    <!-- Descripción del video -->
     <TextView
         android:id="@+id/tv_descripcion"
         android:layout_width="0dp"
@@ -47,7 +58,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_descripcion" />
 
-    <!-- Juego de poner las vocales en orden -->
     <TextView
         android:id="@+id/tv_instrucciones"
         android:layout_width="0dp"
@@ -108,7 +118,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Botones de la segunda fila -->
         <Button
             android:id="@+id/btn_vocal_o"
             android:layout_width="wrap_content"

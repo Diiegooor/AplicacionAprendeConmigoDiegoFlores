@@ -1,8 +1,10 @@
 package com.example.aprendeconmigo1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +31,24 @@ public class tresbasico extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        TextView myTextView = findViewById(R.id.aprendeGriegos);
+        myTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(tresbasico.this, griegosyromanos.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView myTextView2 = findViewById(R.id.aprendeHemisferios);
+        myTextView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(tresbasico.this, hemisferionorteysur.class);
+                startActivity(intent);
             }
         });
     }

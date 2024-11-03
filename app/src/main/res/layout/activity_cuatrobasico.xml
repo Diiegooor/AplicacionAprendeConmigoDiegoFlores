@@ -78,6 +78,7 @@
                         android:gravity="center_vertical">
 
                         <TextView
+                            android:id="@+id/aprendeNarraciones"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -98,11 +99,12 @@
                         android:gravity="center_vertical">
 
                         <TextView
+                            android:id="@+id/aprendeFigurado"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Identifican el significado de expresiones del lenguaje
-figur                       ado"
+                            figurado"
                             android:textSize="16sp"/>
 
                         <ImageView

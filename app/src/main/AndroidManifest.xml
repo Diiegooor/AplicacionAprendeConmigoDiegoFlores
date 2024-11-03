@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,20 +15,56 @@
         android:theme="@style/Theme.AprendeConmigo1"
         tools:targetApi="31">
         <activity
+            android:name=".nivelestroficos"
+            android:exported="true" />
+        <activity
+            android:name=".fotosintesis"
+            android:exported="true" />
+        <activity
+            android:name=".expresionmatematica"
+            android:exported="true" />
+        <activity
+            android:name=".decrecienteycreciente"
+            android:exported="true" />
+        <activity
+            android:name=".lenguajefig"
+            android:exported="true" />
+        <activity
+            android:name=".extraerinfo"
+            android:exported="true" />
+        <activity
+            android:name=".hemisferionorteysur"
+            android:exported="true" />
+        <activity
+            android:name=".griegosyromanos"
+            android:exported="true" />
+        <activity
+            android:name=".compararnumeros100"
+            android:exported="true" />
+        <activity
+            android:name=".numeroscifraspalabras"
+            android:exported="true" />
+        <activity
+            android:name=".aspectoslectura"
+            android:exported="true" />
+        <activity
+            android:name=".hiatosydiptongos"
+            android:exported="true" />
+        <activity
             android:name=".EtapasSeresVivos"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".SeresVivos"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Sumar"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".numeros1a10"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".abecedario"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".vocales"
             android:exported="true" />

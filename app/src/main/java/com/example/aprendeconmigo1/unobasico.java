@@ -51,7 +51,7 @@ public class unobasico extends AppCompatActivity {
         myTextView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(unobasico.this, vocales.class);
+                Intent intent = new Intent(unobasico.this, abecedario.class);
                 startActivity(intent);
             }
         });
@@ -60,7 +60,7 @@ public class unobasico extends AppCompatActivity {
         myTextView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(unobasico.this, vocales.class);
+                Intent intent = new Intent(unobasico.this, numeros1a10.class);
                 startActivity(intent);
             }
         });
@@ -69,7 +69,7 @@ public class unobasico extends AppCompatActivity {
         myTextView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(unobasico.this, vocales.class);
+                Intent intent = new Intent(unobasico.this, Sumar.class);
                 startActivity(intent);
             }
         });
@@ -78,7 +78,7 @@ public class unobasico extends AppCompatActivity {
         myTextView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(unobasico.this, vocales.class);
+                Intent intent = new Intent(unobasico.this, SeresVivos.class);
                 startActivity(intent);
             }
         });
@@ -87,7 +87,7 @@ public class unobasico extends AppCompatActivity {
         myTextView6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(unobasico.this, vocales.class);
+                Intent intent = new Intent(unobasico.this, EtapasSeresVivos.class);
                 startActivity(intent);
             }
         });

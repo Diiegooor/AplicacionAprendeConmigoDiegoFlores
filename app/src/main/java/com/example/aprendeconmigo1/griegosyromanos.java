@@ -13,13 +13,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class SeresVivos extends AppCompatActivity {
+public class griegosyromanos extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_seres_vivos);
+        setContentView(R.layout.activity_griegosyromanos);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -45,7 +45,7 @@ public class SeresVivos extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient());
 
         // Reemplazar con el ID del video de YouTube que proporcionaste
-        String videoID = "l7kJSQcrd4E";
+        String videoID = "mnxR2FYb06o";
 
         // HTML content with YouTube iframe
         String html = "<iframe width=\"100%\" height=\"315\" " +

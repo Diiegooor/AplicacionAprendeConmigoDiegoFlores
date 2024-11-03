@@ -78,6 +78,7 @@
                         android:gravity="center_vertical">
 
                         <TextView
+                            android:id="@+id/aprendeFotosintesis"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -98,10 +99,11 @@
                         android:gravity="center_vertical">
 
                         <TextView
+                            android:id="@+id/aprendeTroficos"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="- Identifican la función de los distintos niveles tróficos."
+                            android:text="Identifican la función de los distintos niveles tróficos."
                             android:textSize="16sp"/>
 
                         <ImageView
