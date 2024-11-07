@@ -64,20 +64,25 @@ public class crearUsuario extends AppCompatActivity {
             String nombre = ed_nombre.getText().toString();
             String apellido = ed_apellido.getText().toString();
             String edad = ed_edad.getText().toString();
-            String contrasena = ed_contrasena.getText().toString(); // Obtener contraseña
+            String contrasena = ed_contrasena.getText().toString();
 
             SQLiteDatabase db = openOrCreateDatabase("BD_EJEMPLO", Context.MODE_PRIVATE, null);
-            db.execSQL("CREATE TABLE IF NOT EXISTS persona(id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "nombre VARCHAR, apellido VARCHAR, edad VARCHAR, contrasena VARCHAR)"); // Añadir columna de contraseña
 
+            // Crear tabla persona si no existe
+            db.execSQL("CREATE TABLE IF NOT EXISTS persona(id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "nombre VARCHAR, apellido VARCHAR, edad VARCHAR, contrasena VARCHAR)");
+
+            // Crear tabla de opiniones si no existe
+            db.execSQL("CREATE TABLE IF NOT EXISTS opinion(id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "categoria VARCHAR, opinion TEXT, calificacion REAL)");
+
+            // Insertar en la tabla persona
             String sql = "INSERT INTO persona(nombre, apellido, edad, contrasena) VALUES (?, ?, ?, ?)";
             SQLiteStatement statement = db.compileStatement(sql);
-
             statement.bindString(1, nombre);
             statement.bindString(2, apellido);
             statement.bindString(3, edad);
-            statement.bindString(4, contrasena); // Asignar la contraseña
-
+            statement.bindString(4, contrasena);
             statement.execute();
 
             Toast.makeText(this, "Datos agregados satisfactoriamente en la base de datos.", Toast.LENGTH_LONG).show();
@@ -85,10 +90,11 @@ public class crearUsuario extends AppCompatActivity {
             ed_nombre.setText("");
             ed_apellido.setText("");
             ed_edad.setText("");
-            ed_contrasena.setText(""); // Limpiar campo de contraseña
+            ed_contrasena.setText("");
             ed_nombre.requestFocus();
         } catch (Exception ex) {
             Toast.makeText(this, "Error: no se pudieron guardar los datos.", Toast.LENGTH_LONG).show();
         }
     }
+
 }
