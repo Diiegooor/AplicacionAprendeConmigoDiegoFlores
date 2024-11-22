@@ -41,12 +41,14 @@
             android:layout_height="48dp"
             android:hint="Usuario"
             android:inputType="textPersonName"
-            android:paddingBottom="10dp" />
+            android:paddingBottom="10dp"
+            android:background="@drawable/edit_text_background"/>
 
         <EditText
             android:id="@+id/et_contrasena"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:background="@drawable/edit_text_background"
             android:hint="Contraseña"
             android:inputType="textPassword"
             android:paddingBottom="10dp" />

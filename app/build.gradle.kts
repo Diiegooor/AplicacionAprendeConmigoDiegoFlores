@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("com.google.gms.google-services")  // No olvides que el plugin debe estar al final de las dependencias
 }
 
 android {
@@ -25,10 +26,12 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     buildFeatures {
         viewBinding = true
     }
@@ -41,10 +44,14 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+
+    // Firebase dependencies
+    implementation(libs.firebase.firestore)  // Asegúrate de tener esta dependencia correctamente configurada
+    implementation("com.google.firebase:firebase-analytics:21.0.0")
+    implementation("com.google.firebase:firebase-auth:21.0.3")
+
+    // Testing dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-
-
-
 }

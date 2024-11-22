@@ -1,18 +1,7 @@
 package com.example.aprendeconmigo1;
 
-import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import android.os.Bundle;
-
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,12 +11,23 @@ import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class opinion1 extends AppCompatActivity {
+
+    private FirebaseFirestore db; // Referencia a Firestore
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opinion1);
+
+        db = FirebaseFirestore.getInstance(); // Inicializar Firestore
 
         Spinner opinionSpinner = findViewById(R.id.opinionSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -39,9 +39,6 @@ public class opinion1 extends AppCompatActivity {
         RatingBar ratingBar = findViewById(R.id.ratingBar);
         Button submitButton = findViewById(R.id.submitOpinionButton);
 
-        // Crear base de datos y tabla si no existen
-        createDatabaseAndTables();
-
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,8 +46,14 @@ public class opinion1 extends AppCompatActivity {
                 float rating = ratingBar.getRating();
                 String category = opinionSpinner.getSelectedItem().toString();
 
-                // Guardar en la base de datos
-                saveOpinion(category, opinion, rating);
+                // Validar campos antes de guardar
+                if (opinion.isEmpty() || category.isEmpty() || rating == 0) {
+                    Toast.makeText(opinion1.this, "Por favor completa todos los campos.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                // Guardar la opinión en Firestore
+                saveOpinionToFirestore(category, opinion, rating);
             }
         });
 
@@ -72,44 +75,26 @@ public class opinion1 extends AppCompatActivity {
         });
     }
 
-    private void createDatabaseAndTables() {
-        try {
-            SQLiteDatabase db = openOrCreateDatabase("BD_EJEMPLO", Context.MODE_PRIVATE, null);
+    private void saveOpinionToFirestore(String category, String opinion, float rating) {
+        // Crear un mapa con los datos de la opinión
+        Map<String, Object> opinionData = new HashMap<>();
+        opinionData.put("categoria", category);
+        opinionData.put("opinion", opinion);
+        opinionData.put("calificacion", rating);
 
-            // Crear tabla persona si no existe
-            db.execSQL("CREATE TABLE IF NOT EXISTS persona(id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "nombre VARCHAR, apellido VARCHAR, edad VARCHAR, contrasena VARCHAR)");
+        // Agregar la opinión a la colección "opiniones" en Firestore
+        db.collection("opiniones")
+                .add(opinionData)
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(this, "Opinión guardada satisfactoriamente.", Toast.LENGTH_LONG).show();
 
-            // Crear tabla de opiniones si no existe
-            db.execSQL("CREATE TABLE IF NOT EXISTS opinion(id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "categoria VARCHAR, opinion TEXT, calificacion REAL)");
-
-            db.close();
-        } catch (Exception e) {
-            Toast.makeText(this, "Error al crear la base de datos: " + e.getMessage(), Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private void saveOpinion(String category, String opinion, float rating) {
-        try {
-            SQLiteDatabase db = openOrCreateDatabase("BD_EJEMPLO", Context.MODE_PRIVATE, null);
-
-            String sql = "INSERT INTO opinion(categoria, opinion, calificacion) VALUES (?, ?, ?)";
-            SQLiteStatement statement = db.compileStatement(sql);
-            statement.bindString(1, category);
-            statement.bindString(2, opinion);
-            statement.bindDouble(3, rating);
-            statement.execute();
-            db.close();
-
-            Toast.makeText(this, "Opinión guardada satisfactoriamente.", Toast.LENGTH_LONG).show();
-
-            // Limpiar campos después de guardar
-            ((EditText) findViewById(R.id.opinionText)).setText("");
-            ((RatingBar) findViewById(R.id.ratingBar)).setRating(0);
-            ((Spinner) findViewById(R.id.opinionSpinner)).setSelection(0);
-        } catch (Exception ex) {
-            Toast.makeText(this, "Error al guardar la opinión: " + ex.getMessage(), Toast.LENGTH_LONG).show();
-        }
+                    // Limpiar campos después de guardar
+                    ((EditText) findViewById(R.id.opinionText)).setText("");
+                    ((RatingBar) findViewById(R.id.ratingBar)).setRating(0);
+                    ((Spinner) findViewById(R.id.opinionSpinner)).setSelection(0);
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error al guardar la opinión: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                });
     }
 }

@@ -2,9 +2,8 @@ package com.example.aprendeconmigo1;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,79 +12,89 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
 import java.util.ArrayList;
 
-
 public class ver_usuarios extends AppCompatActivity {
+
     private ListView lst1;
-    private ArrayList<String> arreglo = new ArrayList<String>();
-    private ArrayAdapter arrayAdapter;
+    private ArrayList<String> arreglo = new ArrayList<>();
+    private ArrayAdapter<String> arrayAdapter;
+    private FirebaseFirestore db; // Referencia a Firestore
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_usuarios);
 
-        try{
-            SQLiteDatabase db = openOrCreateDatabase("BD_EJEMPLO",Context.MODE_PRIVATE,null);
-            lst1 = findViewById(R.id.lst1);
+        lst1 = findViewById(R.id.lst1);
+        db = FirebaseFirestore.getInstance(); // Inicializar Firestore
 
-            final Cursor c = db.rawQuery("select * from persona",null);
-            int id = c.getColumnIndex("id");
-            int nombre = c.getColumnIndex("nombre");
-            int apellido = c.getColumnIndex("apellido");
-            int edad = c.getColumnIndex("edad");
-            arreglo.clear();
+        // Configurar el adaptador de la lista
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arreglo);
+        lst1.setAdapter(arrayAdapter);
 
-            arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arreglo);
+        // Cargar los usuarios desde Firestore
+        cargarUsuarios();
 
+        lst1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                String usuarioInfo = arreglo.get(position);
+                String[] usuarioDatos = usuarioInfo.split(" \t ");
 
-            lst1.setAdapter(arrayAdapter);
+                // Extraer datos del usuario (id, nombre, apellido, edad)
+                String id = usuarioDatos[0];
+                String nombre = usuarioDatos[1];
+                String apellido = usuarioDatos[2];
+                String edad = usuarioDatos[3];
 
-            final  ArrayList<Persona> lista = new ArrayList<Persona>();
-
-
-            if(c.moveToFirst())
-            {
-                do{
-                    Persona persona = new Persona();
-                    persona.id = c.getString(id);
-                    persona.nombre = c.getString(nombre);
-                    persona.apellido = c.getString(apellido);
-                    persona.edad = c.getString(edad);
-                    lista.add(persona);
-
-                    arreglo.add(c.getString(id) + " \t " + c.getString(nombre) + " \t "  + c.getString(apellido) + " \t "  + c.getString(edad) );
-
-                } while(c.moveToNext());
-                arrayAdapter.notifyDataSetChanged();
-                lst1.invalidateViews();
+                // Enviar los datos a la actividad editar
+                Intent i = new Intent(getApplicationContext(), editar.class);
+                i.putExtra("id", id);
+                i.putExtra("nombre", nombre);
+                i.putExtra("apellido", apellido);
+                i.putExtra("edad", edad);
+                startActivity(i);
             }
+        });
 
-            lst1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, android.view.View view, int position, long l) {
-                    Persona persona = lista.get(position);
-                    Intent i = new Intent(getApplicationContext(), editar.class);
-                    i.putExtra("id",persona.id);
-                    i.putExtra("nombre",persona.nombre);
-                    i.putExtra("apellido",persona.apellido);
-                    i.putExtra("edad",persona.edad);
-                    startActivity(i);
-                }
-            });
-        }
-        catch (Exception e){
-            Toast.makeText(this, "Ha ocurrido un error, intentalo nuevamente.", Toast.LENGTH_SHORT).show();
-        }
+        // Configurar el botón de retroceso
         ImageButton btnBack = findViewById(R.id.btnBack);
-
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+    }
 
+    private void cargarUsuarios() {
+        // Consultar la colección "usuarios" en Firestore
+        db.collection("usuarios")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    // Limpiar la lista antes de agregar nuevos datos
+                    arreglo.clear();
+
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        String nombre = document.getString("nombre");
+                        String apellido = document.getString("apellido");
+                        String edad = document.getString("edad");
+
+                        // Formatear la información del usuario para mostrar solo nombre, apellido y edad
+                        String usuarioInfo = nombre + " " + apellido + "    Edad: " + edad;
+                        arreglo.add(usuarioInfo);
+                    }
+
+                    // Notificar al adaptador que los datos han cambiado
+                    arrayAdapter.notifyDataSetChanged();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error al cargar usuarios: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                });
     }
 }

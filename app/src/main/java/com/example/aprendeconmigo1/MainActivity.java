@@ -1,39 +1,45 @@
 package com.example.aprendeconmigo1;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnRegister; // Declarar el botón
+    private Button btnRegister;
     private EditText ed_nombre, ed_contrasena;
     private Button btn_iniciar;
+
+    private FirebaseFirestore db; // Firestore
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Inicializar Firestore
+        db = FirebaseFirestore.getInstance();
+
         ed_nombre = findViewById(R.id.et_nombre);
         ed_contrasena = findViewById(R.id.et_contrasena);
         btn_iniciar = findViewById(R.id.btn_iniciar);
+        btnRegister = findViewById(R.id.btn_register);
 
+        // Botón para iniciar sesión
         btn_iniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iniciarSesion();
             }
         });
-        btnRegister = findViewById(R.id.btn_register); // Inicializar el botón
 
+        // Botón para ir al registro
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,28 +53,29 @@ public class MainActivity extends AppCompatActivity {
         String nombre = ed_nombre.getText().toString().trim();
         String contrasena = ed_contrasena.getText().toString().trim();
 
-        // Verificar que los campos no estén vacíos
         if (nombre.isEmpty() || contrasena.isEmpty()) {
             Toast.makeText(this, "Por favor, ingresa usuario y contraseña", Toast.LENGTH_SHORT).show();
-            return; // Salir del método si hay campos vacíos
+            return;
         }
 
-        SQLiteDatabase db = openOrCreateDatabase("BD_EJEMPLO", MODE_PRIVATE, null);
-        Cursor cursor = db.rawQuery("SELECT * FROM persona WHERE nombre = ? AND contrasena = ?", new String[]{nombre, contrasena});
-
-        if (cursor.getCount() > 0) {
-            Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
-
-            // Crear un Intent para iniciar la nueva actividad
-            Intent intent = new Intent(this, menuPrincipal1.class);
-            startActivity(intent); // Iniciar la nueva actividad
-
-            // Si quieres cerrar la actividad actual, puedes llamar a finish()
-            // finish();
-        } else {
-            Toast.makeText(this, "Nombre o contraseña incorrectos", Toast.LENGTH_SHORT).show();
-        }
-        cursor.close();
+        // Consultar Firestore
+        db.collection("usuarios")
+                .whereEqualTo("nombre", nombre)
+                .whereEqualTo("contrasena", contrasena)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                        Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
+                        // Ir al menú principal
+                        Intent intent = new Intent(this, menuPrincipal1.class);
+                        startActivity(intent);
+                        finish(); // Opcional: cerrar la actividad actual
+                    } else {
+                        Toast.makeText(this, "Nombre o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error al conectar con Firebase", Toast.LENGTH_SHORT).show();
+                });
     }
 }
-
