@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
-    id("com.google.gms.google-services")  // No olvides que el plugin debe estar al final de las dependencias
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -45,10 +45,10 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
 
-    // Firebase dependencies
-    implementation(libs.firebase.firestore)  // Asegúrate de tener esta dependencia correctamente configurada
-    implementation("com.google.firebase:firebase-analytics:21.0.0")
-    implementation("com.google.firebase:firebase-auth:21.0.3")
+    // Firebase: Declaración manual de versiones
+    implementation ("com.google.firebase:firebase-analytics:21.0.0")
+    implementation ("com.google.firebase:firebase-auth:21.0.3")
+    implementation ("com.google.firebase:firebase-firestore:24.7.0")
 
     // Testing dependencies
     testImplementation(libs.junit)

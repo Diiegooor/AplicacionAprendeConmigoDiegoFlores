@@ -2,6 +2,7 @@ package com.example.aprendeconmigo1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,10 +15,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class editar extends AppCompatActivity {
 
-    private EditText ed_nombre, ed_apellido, ed_edad, ed_id;
-    private Button b_editar, b_eliminar, b_volver;
+    private EditText ed_nombre, ed_apellido, ed_edad, ed_contrasena, ed_id;
+    private Button b_editar, b_eliminar;
 
     private FirebaseFirestore db; // Referencia a Firestore
+    private static final String TAG = "EditarUsuario"; // Para logs de depuración
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +29,15 @@ public class editar extends AppCompatActivity {
         // Inicializar Firestore
         db = FirebaseFirestore.getInstance();
 
+        // Inicializar vistas
         ed_nombre = findViewById(R.id.et_nombre);
         ed_apellido = findViewById(R.id.et_apellido);
         ed_edad = findViewById(R.id.et_edad);
+        ed_contrasena = findViewById(R.id.et_contrasena);
         ed_id = findViewById(R.id.id);
 
         b_editar = findViewById(R.id.btn_editar);
         b_eliminar = findViewById(R.id.btn_eliminar);
-        b_volver = findViewById(R.id.btn_volver);
 
         // Obtener datos enviados desde otra actividad
         Intent i = getIntent();
@@ -42,45 +45,24 @@ public class editar extends AppCompatActivity {
         String et_nombre = i.getStringExtra("nombre");
         String et_apellido = i.getStringExtra("apellido");
         String et_edad = i.getStringExtra("edad");
+        String et_contrasena = i.getStringExtra("contrasena");
 
-        // Establecer datos en los campos de texto
-        ed_id.setText(et_id);
-        ed_nombre.setText(et_nombre);
-        ed_apellido.setText(et_apellido);
-        ed_edad.setText(et_edad);
+        // Validar y asignar datos a los campos
+        if (et_id != null) ed_id.setText(et_id);
+        if (et_nombre != null) ed_nombre.setText(et_nombre);
+        if (et_apellido != null) ed_apellido.setText(et_apellido);
+        if (et_edad != null) ed_edad.setText(et_edad);
+        if (et_contrasena != null) ed_contrasena.setText(et_contrasena);
 
         // Botón para editar
-        b_editar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                editar();
-            }
-        });
+        b_editar.setOnClickListener(view -> editar());
 
         // Botón para eliminar
-        b_eliminar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                eliminar();
-            }
-        });
+        b_eliminar.setOnClickListener(view -> eliminar());
 
-        // Botón para volver
-        b_volver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), ver_usuarios.class);
-                startActivity(i);
-            }
-        });
-
+        // Botón para regresar
         ImageButton btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        btnBack.setOnClickListener(v -> finish());
     }
 
     // Método para eliminar un usuario
@@ -96,12 +78,7 @@ public class editar extends AppCompatActivity {
                 .delete()
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(this, "Usuario eliminado correctamente.", Toast.LENGTH_LONG).show();
-                    limpiarCampos();
-
-                    // Redirigir a la actividad donde se muestran los usuarios después de eliminar
-                    Intent intent = new Intent(editar.this, ver_usuarios.class);
-                    startActivity(intent);
-                    finish(); // Cierra la actividad actual para que no regrese al eliminar el usuario
+                    finish(); // Cierra la actividad actual
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Error al eliminar el usuario.", Toast.LENGTH_LONG).show();
@@ -114,29 +91,22 @@ public class editar extends AppCompatActivity {
         String nombre = ed_nombre.getText().toString().trim();
         String apellido = ed_apellido.getText().toString().trim();
         String edad = ed_edad.getText().toString().trim();
+        String contrasena = ed_contrasena.getText().toString().trim();
 
-        if (id.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || edad.isEmpty()) {
+        if (id.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || edad.isEmpty() || contrasena.isEmpty()) {
             Toast.makeText(this, "Por favor, completa todos los campos.", Toast.LENGTH_LONG).show();
             return;
         }
 
-        // Crear un mapa con los nuevos datos
+        // Crear un mapa con los nuevos datos y actualizar en Firestore
         db.collection("usuarios").document(id)
-                .update("nombre", nombre, "apellido", apellido, "edad", edad)
+                .update("nombre", nombre, "apellido", apellido, "edad", edad, "contrasena", contrasena)
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(this, "Usuario actualizado correctamente.", Toast.LENGTH_LONG).show();
+                    finish(); // Cierra la actividad actual
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Error al actualizar los datos.", Toast.LENGTH_LONG).show();
                 });
-    }
-
-    // Método para limpiar los campos del formulario
-    private void limpiarCampos() {
-        ed_id.setText("");
-        ed_nombre.setText("");
-        ed_apellido.setText("");
-        ed_edad.setText("");
-        ed_nombre.requestFocus();
     }
 }
